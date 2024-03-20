@@ -49,6 +49,7 @@ MacroBlockBegin: ''
 MacroBlockEnd: ''
 MaxEmptyLinesToKeep: 2
 NamespaceIndentation: All
+PointerAlignment: Left
 Standard: Auto
 TabWidth: 4
 ...
