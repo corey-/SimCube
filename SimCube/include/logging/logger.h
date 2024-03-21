@@ -18,7 +18,7 @@ enum class LogLevel : uint8_t
 };
 
 template <typename... Args>
-void Log(const LoggerInfo &info, LogLevel level, std::string_view message, Args &&...args)
+void Log(const LoggerInfo& info, LogLevel level, std::string_view message, Args&&... args)
 {
     static constexpr std::array LOG_LEVEL_NAMES{ "INFO", "WARN", "ERROR" };
 
@@ -28,7 +28,7 @@ void Log(const LoggerInfo &info, LogLevel level, std::string_view message, Args 
 }
 
 template <typename... Args>
-void DevLog(const LoggerInfo &info, LogLevel level, std::string_view message, Args &&...args)
+void DevLog(const LoggerInfo& info, LogLevel level, std::string_view message, Args&&... args)
 {
 #ifdef DEV_LOGGING
     Log(info, level, message, std::forward<Args>(args)...);
