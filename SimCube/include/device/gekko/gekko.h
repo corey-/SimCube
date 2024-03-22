@@ -12,8 +12,8 @@ public:
 private:
     std::array<GekkoGprReg, 32> mGenRegArr{};
     std::array<GekkoFprReg, 32> mFloatRegArr{};
-    GekkoFcsrReg mFcsrReg{};
-    GekkoConditionReg mCondReg{};
-    GekkoExceptionReg mXerReg{};
-    GekkoCountReg mCountReg{};
+    GekkoFcsrReg                mFcsrReg{};
+    GekkoConditionReg           mCondReg{};
+    GekkoExceptionReg           mXerReg{};
+    GekkoCountReg               mCountReg{};
 };

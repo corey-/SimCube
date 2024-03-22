@@ -30,3 +30,8 @@ uint32_t CisoGameDisc::GetGameExeOffset() const
     const auto offset = mDataSpan.subspan<0x420, 4>();
     return ReadBigEndianU32(offset);
 }
+
+std::span<uint8_t> CisoGameDisc::ReadData(size_t offset, size_t count)
+{
+    return mDataSpan.subspan(offset, count);
+}

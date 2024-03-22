@@ -15,8 +15,10 @@ public:
 
     [[nodiscard]] uint32_t GetGameExeOffset() const override;
 
+    [[nodiscard]] std::span<uint8_t> ReadData(size_t offset, size_t count) override;
+
 private:
     std::filesystem::path mGamePath;
-    std::vector<uint8_t> mData;
-    std::span<uint8_t> mDataSpan;
+    std::vector<uint8_t>  mData;
+    std::span<uint8_t>    mDataSpan;
 };
