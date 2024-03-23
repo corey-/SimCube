@@ -2,4 +2,4 @@
 
 #include <cstdint>
 
-using vaddr_t = uint32_t;
+using addr_t = uint32_t;

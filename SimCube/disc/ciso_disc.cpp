@@ -7,6 +7,7 @@
 
 static const LoggerInfo LOGGER{ .SourceName = "CisoGameDisc" };
 
+
 void CisoGameDisc::Load()
 {
     const auto fileSize = file_size(mGamePath);

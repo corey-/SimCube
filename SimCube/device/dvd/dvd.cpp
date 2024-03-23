@@ -2,14 +2,14 @@
 #include <logging/logger.h>
 #include <util/alignment.h>
 
-constexpr vaddr_t DVD_REG_STATUS     = 0xCC006000;
-constexpr vaddr_t DVD_REG_STATUS2    = 0xCC006004;
-constexpr vaddr_t DVD_REG_CMD0       = 0xCC006008;
-constexpr vaddr_t DVD_REG_CMD1       = 0xCC00600C;
-constexpr vaddr_t DVD_REG_CMD2       = 0xCC006010;
-constexpr vaddr_t DVD_REG_DMA_ADDR   = 0xCC006014;
-constexpr vaddr_t DVD_REG_DMA_LENGTH = 0xCC006018;
-constexpr vaddr_t DVD_REG_CTRL       = 0xCC00601C;
+constexpr addr_t DVD_REG_STATUS     = 0xCC006000;
+constexpr addr_t DVD_REG_STATUS2    = 0xCC006004;
+constexpr addr_t DVD_REG_CMD0       = 0xCC006008;
+constexpr addr_t DVD_REG_CMD1       = 0xCC00600C;
+constexpr addr_t DVD_REG_CMD2       = 0xCC006010;
+constexpr addr_t DVD_REG_DMA_ADDR   = 0xCC006014;
+constexpr addr_t DVD_REG_DMA_LENGTH = 0xCC006018;
+constexpr addr_t DVD_REG_CTRL       = 0xCC00601C;
 
 static const LoggerInfo LOGGER{ .SourceName = "DvdReader" };
 
@@ -76,7 +76,7 @@ bool DvdReader::ConsumeWriteMessage(const DeviceWriteMsg& msg)
 
 void DvdReader::PostWriteControlReg()
 {
-    if (GetDvdCtrlRegTstart(mCtrlReg))
+    if (GetDvdCtrlRegTStart(mCtrlReg))
     {
         ClearDvdCtrlRegTStart(mCtrlReg);
 

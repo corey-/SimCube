@@ -7,14 +7,14 @@
 
 struct DeviceReadMsg
 {
-    vaddr_t            Address;
+    addr_t             Address;
     size_t             Count;
     std::span<uint8_t> Buffer;
 };
 
 struct DeviceWriteMsg
 {
-    vaddr_t                  Address;
+    addr_t                   Address;
     size_t                   Count;
     std::span<const uint8_t> Buffer;
 };

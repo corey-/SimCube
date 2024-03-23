@@ -35,7 +35,7 @@ enum class DvdCtrlRegMode
     return DvdCtrlRegMode::IMMEDIATE;
 }
 
-[[nodiscard]] inline bool GetDvdCtrlRegTstart(const DvdCtrlReg& reg)
+[[nodiscard]] inline bool GetDvdCtrlRegTStart(const DvdCtrlReg& reg)
 {
     return (reg.Control & 0x1);
 }
