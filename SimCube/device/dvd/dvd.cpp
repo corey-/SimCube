@@ -86,10 +86,11 @@ void DvdReader::PostWriteControlReg()
             DmaReadSector();
             return;
         }
-
+#ifndef NDEBUG
         Log(LOGGER, LogLevel::ERROR, "Unimplemented command {}/{}/{}", mCmd0Reg.Command, mCmd0Reg.Subcommand1,
             mCmd0Reg.Subcommand2);
         std::exit(-1);
+#endif
     }
 }
 
