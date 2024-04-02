@@ -11,6 +11,7 @@ class DvdReader : public IDevice
 public:
     void InsertDisc(std::shared_ptr<IGameDisc> disc) { mDisc = std::move(disc); }
 
+    void ConnectDevice(std::weak_ptr<IDevice> device) override { mDeviceConnections.push_back(std::move(device)); }
     bool ConsumeReadMessage(const DeviceReadMsg& msg) override;
     bool ConsumeWriteMessage(const DeviceWriteMsg& msg) override;
 
@@ -28,4 +29,6 @@ private:
     DvdDmaAddrReg   mDmaAddrReg{};
     DvdDmaLengthReg mDmaLengthReg{};
     DvdCtrlReg      mCtrlReg{};
+
+    std::vector<std::weak_ptr<IDevice>> mDeviceConnections{};
 };

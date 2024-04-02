@@ -1,5 +1,10 @@
 #include <device/memory/ram.h>
 
+void Ram::InitializeRam(addr_t offset, std::span<uint8_t> data)
+{
+    memcpy_s(&mRam[offset], mRam.size() - offset, data.data(), data.size());
+}
+
 bool Ram::ConsumeReadMessage(const DeviceReadMsg& msg)
 {
     if (msg.Address < mBaseAddr)

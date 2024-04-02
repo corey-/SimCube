@@ -1,4 +1,5 @@
 #include <device/gekko/power_pc_tables.h>
+#include <logging/logger.h>
 #include <util/endian.h>
 
 #include <array>
@@ -6,8 +7,6 @@
 #include <map>
 #include <string_view>
 #include <variant>
-
-#include "logging/logger.h"
 
 static const LoggerInfo LOGGER{ .SourceName = "PPCDecode" };
 

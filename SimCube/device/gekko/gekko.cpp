@@ -10,5 +10,6 @@ void GekkoCpu::HardReset()
     mFcsrReg.Val  = 0;
     mCondReg.Val  = 0;
     mXerReg.Val   = 0;
+    mLinkReg.Val  = 0;
     mCountReg.Val = 0;
 }

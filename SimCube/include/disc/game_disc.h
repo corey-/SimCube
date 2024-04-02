@@ -30,4 +30,4 @@ public:
     [[nodiscard]] virtual std::span<uint8_t> ReadData(size_t offset, size_t count) = 0;
 };
 
-std::shared_ptr<IGameDisc> CreateDisc(const std::filesystem::path& discPath);
+[[nodiscard]] std::shared_ptr<IGameDisc> CreateDisc(const std::filesystem::path& discPath);

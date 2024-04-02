@@ -7,16 +7,25 @@
 
 static const LoggerInfo LOGGER{ .SourceName = "CisoGameDisc" };
 
+static constexpr size_t CISO_HEADER_SIZE = 0x8000;
 
 void CisoGameDisc::Load()
 {
-    const auto fileSize = file_size(mGamePath);
+    if (!exists(mGamePath))
+        throw std::runtime_error("File not found");
+
+    if (file_size(mGamePath) <= CISO_HEADER_SIZE)
+        throw std::runtime_error("Invalid disc file");
+
+    const auto fileSize = file_size(mGamePath) - CISO_HEADER_SIZE;
     mData.resize(fileSize);
 
     DevLog(LOGGER, LogLevel::INFO, "Loading {} bytes from {}", fileSize, mGamePath.string());
 
     std::ifstream ifs(mGamePath, std::ifstream::binary);
+    ifs.seekg(CISO_HEADER_SIZE);
     ifs.read(reinterpret_cast<char*>(mData.data()), mData.size());
+
     mDataSpan = std::span(mData);
 }
 

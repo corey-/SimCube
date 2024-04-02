@@ -1,7 +1,10 @@
 #include <iostream>
 
 #include <device/dvd/dvd.h>
+#include <device/gekko/gekko.h>
+#include <device/memory/ram.h>
 #include <disc/game_disc.h>
+#include <util/endian.h>
 
 int main(int argc, char* argv[])
 {
@@ -15,26 +18,14 @@ int main(int argc, char* argv[])
             DvdReader dvd;
             dvd.InsertDisc(game);
 
-            DeviceWriteMsg msg{ .Address = 0xCC006008, .Count = 4, .Buffer = { { 0x00, 0x00, 0x00, 0xA8 } } };
-            dvd.ConsumeWriteMessage(msg);
+            Ram ram(0, 24ull * 1024ull * 1024ull);
+            ram.InitializeRam(0x1200000, game->ReadData(0x2460, 0x2000));
 
-            msg.Address = 0xCC00600C;
-            msg.Buffer  = { { 0x00, 0x20, 0x00, 0x00 } };
-            dvd.ConsumeWriteMessage(msg);
+            const auto entryPoint = ReadBigEndianU32(game->ReadData(0x2450, 4).subspan<0, 4>());
 
-            msg.Address = 0xCC006010;
-            msg.Buffer  = { { 0x00, 0x01, 0x00, 0x00 } };
-            dvd.ConsumeWriteMessage(msg);
+            GekkoCpu cpu;
+            cpu.SetPc(entryPoint);
 
-            msg.Address = 0xCC006014;
-            dvd.ConsumeWriteMessage(msg);
-
-            msg.Address = 0xCC006018;
-            dvd.ConsumeWriteMessage(msg);
-
-            msg.Address = 0xCC00601C;
-            msg.Buffer  = { { 0x03, 0x00, 0x00, 0x00 } };
-            dvd.ConsumeWriteMessage(msg);
         }
         else
         {
