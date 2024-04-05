@@ -26,6 +26,10 @@ int main(int argc, char* argv[])
             GekkoCpu cpu;
             cpu.SetPc(entryPoint);
 
+            cpu.ConnectDevice(ram);
+            cpu.ConnectDevice(dvd);
+
+            cpu.Execute();
         }
         else
         {

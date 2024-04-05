@@ -237,9 +237,7 @@ std::optional<InstructionInfo> PpcDecode(PpcOpcode opcode)
         const auto& entry = table->Entries.at(index);
 
         if (const InstLeaf* leaf = get_if<InstLeaf>(&entry))
-        {
             return FillOutInstInfo(*leaf, opcode);
-        }
 
         const auto& [nextTable, nextIndex] = get<InstTablePtr>(entry);
 
@@ -248,7 +246,7 @@ std::optional<InstructionInfo> PpcDecode(PpcOpcode opcode)
     }
 
 #ifndef NDEBUG
-    Log(LOGGER, LogLevel::ERROR, "Invalid Opcode: {:x}", opcode);
+    Log(LOGGER, LogLevel::ERROR, "Invalid Opcode: {:032b}", opcode);
     std::exit(-1);
 #endif
 

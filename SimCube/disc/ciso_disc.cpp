@@ -31,7 +31,7 @@ void CisoGameDisc::Load()
 
 std::string CisoGameDisc::GetGameName() const
 {
-    const auto name = mDataSpan.subspan<0x8020, 0x3e0>();
+    const auto name = mDataSpan.subspan<0x20, 0x3e0>();
     return std::string(name.begin(), name.end());
 }
 
